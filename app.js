@@ -6,7 +6,7 @@ const statusEl = document.querySelector("#status");
 const todos = [
   {
     text: "Relearn VSCode",
-    done: false,
+    done: true,
   },
   {
     text: "Relearn Javascript",
@@ -24,7 +24,6 @@ const render = () => {
   listEl.innerHTML = "";
   for (let i = 0; i < todos.length; i++) {
     const todo = todos[i];
-    console.log(todo);
     const li = document.createElement("li");
     li.textContent = todo.text;
     if (todo.done) {
@@ -43,13 +42,37 @@ const addTodo = (text) => {
       text: text,
       done: false,
     });
+    render();
+    return true;
   } else if (text === "") {
     return false;
   }
-  render();
 };
 
 buttonEl.addEventListener("click", () => {
     let value = inputEl.value;
-    addTodo(value);
+    const success = addTodo(value);
+    console.log(success);
+    inputEl.value = "";
+    inputEl.focus();
 })
+
+listEl.addEventListener("click", (event) => {
+        // Find the index of the clicked <li> in the list
+        const items = Array.from(listEl.children);
+        const index = items.indexOf(event.target);
+
+        if (index == -1) {
+            return; // Clicked outside of a todo item
+        }
+        // Toggle the "done" status of the corresponding todo
+        console.log("Clicked todo index:", index);
+        todos[index].done = !todos[index].done;
+        // Update the class of the clicked item based on the new status
+        if (todos[index].done) {
+            event.target.classList.add("done");
+        } else {
+            event.target.classList.remove("done");
+        }
+        render(); // Update the UI to reflect the change
+    });
