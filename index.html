@@ -1,12 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>My webpage</h1>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo app</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 720px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      input,
+      button {
+        padding: 0.6rem;
+      }
+
+      input {
+        flex: 1;
+      }
+
+      #status {
+        opacity: 0.7;
+      }
+
+      li {
+        margin: 0.35rem 0;
+      }
+
+      .done {
+        text-decoration: line-through;
+        opacity: 0.7;
+        color: gray;
+      }
+
+      li:hover {
+        cursor: pointer;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Todo (Day 1)</h1>
+
+    <div class="row">
+      <input id="todo-input" placeholder="What needs doing?" />
+      <button id="add-btn" type="button" class="add-btn">Add</button>
+    </div>
+
+    <p class="muted" id="status">Status: TODO</p>
+
+    <ul id="todo-list">
+      <li class="muted">Your todos will appear here…</li>
+    </ul>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
